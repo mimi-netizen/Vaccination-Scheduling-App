@@ -1,0 +1,12 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Update Storage</title>
+{% endblock title %}
+
+{% block content %}
+<div class="m-2 p-2">
+  <h4 class="mb-3">Fill the following details to update this storage</h4>
+  {% include "components/form.html" with form_name="Update Storage" %}
+</div>
+{% endblock content %}

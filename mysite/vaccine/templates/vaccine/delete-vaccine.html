@@ -1,0 +1,14 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Delete Vaccine</title>
+{% endblock title %}
+
+{% block content %}
+<div class="card p-3">
+    <div class="card-text">
+        <h4>Are you sure you want to delete {{ object.name }} ?</h4>
+        {% include "components/form.html" with form_name="Delete Vaccine" %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends 'mysite/base.html' %}
+{% block title %} 
+    <title>Vaccine List</title>
+{% endblock title %}
+
+{% block content %}
+<div class="mt-3">
+
+  <div class="d-flex align-items-center justify-content-between">
+    <h3 class="text-center">
+      <i class="fas fa-syringe"></i> Vaccine List
+    </h3>
+    <a href="{% url 'vaccine:create' %}"><i class="fas fa-plus"></i> Create Vaccine</a>
+  </div>
+
+  <table class="table table-responsive table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Vaccine Name</th>
+        <th scope="col">Number of Doses</th>
+        <th scope="col">Interval</th>
+        <th scope="col">Minimum Age</th>
+        <th scope="col">Select</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for vaccine in object_list %}
+      <tr>
+        <td>{{vaccine.name|upper}}</td>
+        <td>{{ vaccine.number_of_doses }}</td>
+        <td>{{ vaccine.interval }}</td>
+        <td>{{ vaccine.minimum_age }}</td>
+        <td><a href="{% url 'vaccine:detail' vaccine.id %}" class="btn-sm btn-outline-primary">View Details</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

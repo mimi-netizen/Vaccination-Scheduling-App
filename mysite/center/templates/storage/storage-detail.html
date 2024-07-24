@@ -1,0 +1,75 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Storage Details</title> 
+{% endblock title %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title mb-4"><i class="fas fa-box"></i> Storage Details</h5>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Center Name
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.center.name }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Vaccine Name
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.vaccine.name }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Total Quantity
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.total_quantity }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Booked Quantity
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.booked_quantity }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Available Quantity
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ available_quantity }}
+      </div>
+    </div>
+
+    <div class="row mb-1 btn-container">
+      <div class="col-12">
+        <button class="btn btn-sm btn-success m-1">
+          <a href="{% url 'center:storage-update' object.id %}">
+            <i class="fas fa-pen"></i> Update Storage
+          </a>
+        </button>
+
+        <button class="btn btn-sm btn-danger m-1">
+          <a href="{% url 'center:storage-delete' object.id %}">
+            <i class="fas fa-trash"></i> Delete Storage
+          </a>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock content %}

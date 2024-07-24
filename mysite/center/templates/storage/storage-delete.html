@@ -1,0 +1,12 @@
+{% extends 'mysite/base.html' %} 
+
+{% block title %} 
+    <title>Delete Storage</title>
+{% endblock title %} 
+
+{% block content %}
+<div class="m-2 p-2">
+    <h4>Are you sure you want to delete "{{ object }}" ?</h4>
+    {% include "components/form.html" with form_name="Delete Storage" %}
+</div>
+{% endblock content %}

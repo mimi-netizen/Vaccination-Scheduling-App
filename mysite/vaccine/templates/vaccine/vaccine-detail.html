@@ -1,0 +1,83 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Vaccine Details</title>
+{% endblock title %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title mb-4"><i class="fas fa-map-marker-alt"></i> Vaccine Details</h5>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Vaccine Name
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.name }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Description
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.description }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Storage Temperature
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.storage_temperature }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Number of doses
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.number_of_doses }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Interval
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.interval }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Minimum Age
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.minimum_age }}
+      </div>
+    </div>
+
+    <div class="row mb-1 btn-container">
+      <div class="col-12">
+        <button class="btn btn-sm btn-success m-1">
+          <a href="{% url 'vaccine:update' object.id %}">
+            <i class="fas fa-pen"></i> Update Vaccine
+          </a>
+        </button>
+
+        <button class="btn btn-sm btn-danger m-1">
+          <a href="{% url 'vaccine:delete' object.id %}">
+            <i class="fas fa-trash"></i> Delete Vaccine
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

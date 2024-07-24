@@ -1,0 +1,54 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Center Detail</title>
+{% endblock title %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title mb-4"><i class="fas fa-map-marker-alt"></i> Center Details</h5>
+    
+    <div class="row mb-1">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+         Center Name
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{center.name}}
+        </div>
+    </div>
+    
+    <div class="row mb-1">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Address
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+          <pre>{{center.address}}</pre>
+        </div>
+    </div>
+    
+    <div class="row mb-1 btn-container">
+      <div class="col-12">
+
+        <button class="btn btn-sm btn-dark m-1">
+          <a href="{% url 'center:storage-list' center.id %}">
+            <i class="fas fa-eye"></i> View Storage
+          </a>
+        </button>
+
+        <button class="btn btn-sm btn-success m-1">
+          <a href="{% url 'center:update' center.id %}">
+            <i class="fas fa-pen"></i> Update Center
+          </a>
+        </button>
+            
+        <button class="btn btn-sm btn-danger m-1">
+          <a href="{% url 'center:delete' center.id %}">
+            <i class="fas fa-trash"></i> Delete Center
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

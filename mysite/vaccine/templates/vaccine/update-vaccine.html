@@ -1,0 +1,14 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Update Vaccine</title>
+{% endblock title %}
+
+{% block content %}
+<div class="card p-3">
+  <div class="card-body">
+    <h4 class="mb-3">Fill the following details to update the vaccine details.</h4>
+    {% include "components/form.html" with form_name="Update Vaccine" %}
+  </div>
+</div>
+{% endblock content %}

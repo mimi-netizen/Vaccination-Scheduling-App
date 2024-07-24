@@ -1,0 +1,131 @@
+{% extends 'mysite/base.html' %} {% load static %} {% block title %}
+<title>Book My Vaccine</title>
+{% endblock title %} {% block content %}
+<!--    Banner Starts Here      -->
+<section id="home" class="home">
+  <div class="banner_wrapper wrapper pb-0">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 order-md-1 order-2 p-5">
+          <h3>Save a Life</h3>
+          <h2>Through Vaccination</h2>
+          <p>
+            Vaccines are one of the most important and effective ways to protect
+            your baby's health. They work by introducing a small, inactivated or
+            weakened version of a virus or bacteria, triggering the immune
+            system to build antibodies and learn how to fight off that illness.
+          </p>
+          <a href="/accounts/login/" class="main-btn mt-4 fill-btn"
+            >Schedule Vaccination</a
+          >
+        </div>
+        <div class="col-md-6 order-md-2 order-1 mb-md-0 b-5">
+          <div class="top-right-sec">
+            <div class="banner-img">
+              <img
+                src="{% static 'images/banner-image.png' %}"
+                alt="Docter with Syringe"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper mt-1 pb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card text-center">
+            <div class="icon-box fs-1 text-success">
+              <i class="fas fa-syringe"></i>
+            </div>
+            <h4>Vaccine</h4>
+            <p>
+              Get different types of vaccines for various infections or disease
+              like Rotavirus, Polio, Chickenpox, Typhoid, Yellow Fever, Rabies
+              etc.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card text-center">
+            <div class="icon-box fs-1 text-primary">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h4>Center</h4>
+            <p>
+              Skipping or delaying vaccines puts your baby at unnecessary risk,
+              Book your vaccine from your nearest vaccination center.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card text-center">
+            <div class="icon-box fs-1 text-warning">
+              <i class="fas fa-calendar"></i>
+            </div>
+            <h4>Campaign</h4>
+            <p>
+              Choose your desired campaign and book a slot based on your
+              availabity. There's no need to stay on line and become a part of
+              crowd.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--    Banner Ends Here        -->
+
+<!--    About Starts Here       -->
+<section id="about" class="about_wrapper wrapper">
+  <div class="container text-center">
+    <h2>Our Journey</h2>
+    <p>
+      We launched this platform on 2024 and so far, we have onboarded various
+      hospitals, collaborated with various local health authorities for
+      conduction of mass vaccination campaign. We are committed to make a
+      healthy society through our platform. Our mission is to help every single
+      organization involved in vaccination drives.
+    </p>
+    <div class="row">
+      <div class="col-md-6 mb-md-0 mb-5">
+        <div class="postion-relative">
+          <img
+            src="{% static 'images/ped.jpg' %}"
+            alt="Nurse with syringe"
+            class="about-img img-fluid"
+          />
+        </div>
+      </div>
+      <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="card">
+          <div class="row text-center">
+            <div class="col-6">
+              <h4>50+</h4>
+              <p>Vaccines Available</p>
+            </div>
+            <div class="col-6">
+              <h4>500+</h4>
+              <p>Vaccination Center</p>
+            </div>
+          </div>
+          <div class="row text-center mt-4">
+            <div class="col-6">
+              <h4>600+</h4>
+              <p>Campaign Created</p>
+            </div>
+            <div class="col-6">
+              <h4>5000+</h4>
+              <p>Successful Vaccination</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--    About Ends Here       -->
+{% endblock content %}

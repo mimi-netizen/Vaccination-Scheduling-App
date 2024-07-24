@@ -15,3 +15,4 @@ class Vaccination(models.Model):
 
     def __str__(self):
         return self.patient.get_full_name() + " | " + str(self.campaign.vaccine.name)
+

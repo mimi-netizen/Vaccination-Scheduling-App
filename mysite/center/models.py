@@ -8,7 +8,8 @@ class Center(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Storage(models.Model):
     center = models.ForeignKey(Center, on_delete=models.CASCADE)
     vaccine = models.ForeignKey(Vaccine, on_delete=models.CASCADE)
@@ -17,6 +18,4 @@ class Storage(models.Model):
 
     def __str__(self):
         return self.center.name + " | " + self.vaccine.name
-
-
 

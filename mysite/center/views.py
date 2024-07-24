@@ -5,11 +5,15 @@ from center.forms import CenterForm, StorageForm
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.views import generic
+from django.core.paginator import Paginator
 
 def center_list(request):
-    objects = Center.objects.all()
+    objects = Center.objects.all().order_by("name")
+    paginator = Paginator(objects, 2)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     context = {
-        "center": objects,
+        "page_obj": page_obj,
     }
     return render(request, "center/center-list.html", context)
 
@@ -70,6 +74,8 @@ def delete_center(request, id):
 class StorageList(generic.ListView):
     queryset = Storage.objects.all()
     template_name = "storage/storage-list.html"
+    ordering = ["id"]
+    paginate_by = 2
 
     def get_queryset(self):
         return super().get_queryset().filter(center_id = self.kwargs["center_id"])

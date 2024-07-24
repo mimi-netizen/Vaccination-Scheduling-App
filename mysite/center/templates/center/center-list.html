@@ -23,7 +23,7 @@
     </thead>
     
     <tbody>
-      {% for object in center %}
+      {% for object in page_obj %}
       <tr>
         <td>{{object.name|upper}}</td>
         <td><a href="{% url 'center:detail' object.id %}" class="btn-sm btn-outline-primary">View Details</a></td>
@@ -33,5 +33,6 @@
     
   </table>
 
+  {% include "components/pagination.html" %}
 </div>
 {% endblock content %}

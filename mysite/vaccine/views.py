@@ -5,13 +5,17 @@ from django.http import Http404, HttpResponseRedirect
 from vaccine.forms import VaccineForm
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator
 
 
 class VaccineList(View):
     def get(self, request):
-        vaccine_list = Vaccine.objects.all()
+        vaccine_list = Vaccine.objects.all().order_by("name")
+        paginator = Paginator(vaccine_list, 2)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
         context = {
-            "object_list": vaccine_list
+            "page_obj": page_obj
         }
         return render(request, "vaccine/vaccine-list.html", context)
 

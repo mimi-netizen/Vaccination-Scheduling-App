@@ -26,7 +26,7 @@
     </thead>
     
     <tbody>
-      {% for storage in object_list %}
+      {% for storage in page_obj %}
       <tr>
         <td>{{ storage.center.name }}</td>
         <td>{{ storage.vaccine.name }}</td>
@@ -38,5 +38,6 @@
     </tbody>
     
   </table>
+  {% include "components/pagination.html" %}
 </div>
 {% endblock content %}

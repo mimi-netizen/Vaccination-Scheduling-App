@@ -6,6 +6,9 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.views import generic
 from django.core.paginator import Paginator
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 def center_list(request):
     objects = Center.objects.all().order_by("name")
@@ -29,7 +32,9 @@ def create_center(request):
         form = CenterForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Vaccination Center Created Successfully")
             return HttpResponseRedirect(reverse("center:list"))
+        messages.error(request, "Please enter valid data")
         return render(request, "center/create-center.html", {"form": form})
     # GET
     context = {
@@ -47,7 +52,9 @@ def update_center(request, id):
         form = CenterForm(request.POST, instance = center)
         if form.is_valid():
             form.save()
+            messages.success(request, "Vaccination Center updated successfully")
             return HttpResponseRedirect(reverse("center:detail", kwargs={"id": center.id}))
+        messages.error(request, "Please enter valid data")
         return render(request, "center/update-center.html", {"form": form})
     # Get
     context = {
@@ -63,6 +70,7 @@ def delete_center(request, id):
     
     if request.method == "POST":
         center.delete()
+        messages.success(request, "Vaccination Center Deleted Successfully")
         return HttpResponseRedirect(reverse("center:list"))
     # GET
     context = {
@@ -94,10 +102,11 @@ class StorageDetail(generic.DetailView):
         context["available_quantity"] = self.object.total_quantity - self.object.booked_quantity
         return context
 
-class CreateStorage(generic.CreateView):
+class CreateStorage(SuccessMessageMixin, generic.CreateView):
     model = Storage
     form_class = StorageForm
     template_name = "storage/storage-create.html"
+    success_message = "Storage Created Successfully"
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -113,10 +122,11 @@ class CreateStorage(generic.CreateView):
         return reverse("center:storage-list", kwargs={"center_id": self.kwargs["center_id"]})
 
 
-class StorageUpdate(generic.UpdateView):
+class StorageUpdate(SuccessMessageMixin, generic.UpdateView):
     model = Storage
     form_class = StorageForm
     template_name = "storage/storage-update.html"
+    success_message = "Storage Updated Successfully"
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -126,9 +136,10 @@ class StorageUpdate(generic.UpdateView):
     def get_success_url(self) -> str:
         return reverse("center:storage-list", kwargs={"center_id": self.get_object().center.id})
 
-class StorageDelete(generic.DeleteView):
+class StorageDelete(SuccessMessageMixin, generic.DeleteView):
     model = Storage
     template_name = "storage/storage-delete.html"
+    success_message = "Storage Deleted Successfully"
 
     def get_success_url(self) -> str:
         return reverse("center:storage-list", kwargs={"center_id": self.get_object().center.id})

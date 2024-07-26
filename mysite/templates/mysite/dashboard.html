@@ -1,0 +1,98 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Book My Vaccine</title>
+{% endblock %}
+
+{% block content %}
+<div class="card mt-3">
+    <div class="card-body container p-1 p-sm-2 p-md-3 p-lg-4 p-xl-5">
+        <div class="row">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card text-dark bg-light m-1 p-1">
+                    <div class="card-body">
+                        <div class="d-flex flex-column text-center m-1">
+                            <span>
+                                <a href="{% url 'vaccine:list' %}" class="dashboard-card-link">
+                                    <i class="fas fa-syringe fs-1"></i> <br>
+                                    Available <br> Vaccines
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card text-dark bg-light m-1 p-1">
+                    <div class="card-body row">
+                        <div class="d-flex flex-column text-center m-1">
+                            <span>
+                                <a href="{% url 'center:list' %}" class="dashboard-card-link">
+                                    <i class="fas fa-map-marker-alt fs-1"></i> <br>
+                                    Vaccination <br> Center
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card text-dark bg-light m-1 p-1">
+                    <div class="card-body">
+                        <div class="d-flex flex-column text-center m-1">
+                            <span>
+                                <a href="" class="dashboard-card-link">
+                                    <i class="fas fa-calendar fs-1"></i> <br>
+                                    Current <br> Campaigns
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card text-dark bg-light m-1 p-1">
+                    <div class="card-body">
+                        <div class="d-flex flex-column text-center m-1">
+                            <span>
+                                <a href="#" class="dashboard-card-link">
+                                    <i class="fas fa-book-medical fs-1"></i> <br>
+                                    My <br> Vaccination
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card text-dark bg-light m-1 p-1">
+                    <div class="card-body">
+                        <div class="d-flex flex-column text-center m-1">
+                            <span>
+                                <a href="#" class="dashboard-card-link">
+                                    <i class="fas fa-clock fs-1"></i> <br>
+                                    Schedule <br> Vaccination
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card text-dark bg-light m-1 p-1">
+                    <div class="card-body">
+                        <div class="d-flex flex-column text-center m-1">
+                            <span>
+                                <a href="{% url 'user:profile-view' %}" class="dashboard-card-link">
+                                    <i class="fas fa-user fs-1"></i><br>
+                                    Profile <br> Information
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

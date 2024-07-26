@@ -1,0 +1,91 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Campaign Details</title>
+{% endblock title %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title mb-4"><i class="fas fa-calendar"></i> Campaign Details</h5>
+    <div class="container">
+
+      <div class="row mb-1">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+          Center Name
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+          {{ object.center.name }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+          Vaccine Name
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+          {{ object.vaccine.name }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+         Start Date
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+          {{ object.start_date }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+         End Date
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+          {{ object.end_date }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+         Registrations
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+          {{ registration }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+         Agents Assigned
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+          {% for agent in object.agents.all %}
+          {{agent.get_full_name }},
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="row mb-1 btn-container">
+        <div class="col-12">
+          <button class="btn btn-sm btn-dark m-1">
+            <a href="#"><i class="fas fa-eye"></i> View Registrations</a>
+          </button>
+
+          <button class="btn btn-sm btn-primary m-1">
+            <a href="{% url 'campaign:slot-list' object.id %}"><i class="fas fa-eye"></i> View Slots</a>
+          </button>
+
+          <button class="btn btn-sm btn-success m-1">
+            <a href="{% url 'campaign:campaign-update' object.id %}"><i class="fas fa-pen"></i> Update Campaign</a>
+          </button>
+
+          <button class="btn btn-sm btn-danger m-1">
+            <a href="{% url 'campaign:campaign-delete' object.id %}"><i class="fas fa-trash"></i> Delete Campaign</a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Slot Details</title>
+{% endblock title %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title mb-4"><i class="fas fa-clock"></i> Slot Details</h5>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+       Date
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.date }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+       Start Time
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.start_time }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+       End Time
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.end_time }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+       Max Capacity
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.max_capacity }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+       Reserved
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.reserved }}
+      </div>
+    </div>
+
+    <div class="row mb-1 btn-container">
+      <div class="col-12">
+
+        <button class="btn btn-sm btn-success m-1">
+          <a href="#"><i class="fas fa-clock"></i> Schedule</a>
+        </button>
+        
+        <button class="btn btn-sm btn-success m-1">
+          <a href="{% url 'campaign:slot-update' object.campaign.id object.id %}"><i class="fas fa-pen"></i> Update Slot</a>
+        </button>
+
+        <button class="btn btn-sm btn-danger m-1">
+          <a href="{% url 'campaign:slot-delete' object.id %}"><i class="fas fa-trash"></i> Delete Slot</a>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}
+    <title>Slot List</title>
+{% endblock title %}
+
+{% block content %}
+<div class="mt-3">
+  
+  <div class="d-flex align-items-center justify-content-between">
+    <h3 class="text-center"><i class="fas fa-clock"></i> Slot List</h3>
+    <a href="{% url 'campaign:slot-create' campaign_id %}"><i class="fas fa-plus"></i> Create Slot</a>
+  </div>
+  
+  <table class="table table-responsive table-hover text-center">
+      <thead>
+        <tr>
+          <th scope="col">Start Time</th>
+          <th scope="col">End Time</th>
+          <th scope="col">Date</th>
+          <th scope="col">Max Capacity</th>
+          <th scope="col">Reserved</th>
+          <th scope="col">Select</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        {% for slot in object_list %}
+        <tr>
+          <td>{{ slot.start_time }}</td>
+          <td>{{ slot.end_time }}</td>
+          <td>{{ slot.date }}</td>
+          <td>{{ slot.max_capacity }}</td>
+          <td>{{ slot.reserved }}</td>
+          <td><a href="{% url 'campaign:slot-detail' slot.id %}" class="btn-sm btn-outline-primary">View Details</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  
+  </table>
+  {% include "components/pagination.html" %}
+</div>
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Profile Update</title>
+{% endblock title %}
+
+{% block content %}
+<div class="m-2 p-2">
+  <h4>Fill the following details to update the profile</h4>
+  {% include "components/auth-form.html" with form_name="Update Profile" %}
+</div>
+{% endblock content %}

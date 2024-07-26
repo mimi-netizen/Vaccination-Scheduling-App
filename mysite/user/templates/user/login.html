@@ -1,0 +1,17 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Login</title>
+{% endblock %}
+
+{% block content %}
+<div class="card p-3">
+   <div class="card-body">
+      <h4>Enter your email and password to login</h4>
+      {% include "components/form.html" with form_name="Login" %}
+   </div>
+   <p class="p-3">
+      <a href="#">Reset Password</a>
+   </p>
+</div>
+{% endblock content %}

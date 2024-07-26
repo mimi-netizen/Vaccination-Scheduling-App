@@ -1,0 +1,127 @@
+{% extends "mysite/base.html" %}
+
+{% block title %} 
+    <title>Profile Details</title>
+{% endblock title %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title mb-4">
+      <i class="fas fa-user"></i> Profile Details
+    </h5>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          {% if user.photo %}
+          <img src={{ user.photo.url }} alt="Profile Picture" class="profile-img">
+          {% endif %}
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="row mb-1">
+            <p>Here is your profile details. Please keep your details updated.</p>
+          </div>
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              Email Address
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.email }}
+              {% if user.is_email_verified %}
+              <i>(Email Verified)</i>
+              {% else %}
+              (<a href="{% url 'user:verify-email' %}">Verify Email</a>)
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              First Name
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.first_name }}
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              Middle Name
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.middle_name }}
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              Last Name
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.last_name }}
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              Date of Birth
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.date_of_birth }}
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              Gender
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.gender }}
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              Identity Document Type
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.identity_document_type }}
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              Identity Document Number
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.identity_document_number }}
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-5 col-sm-4 fw-bold">
+              Date Joined
+            </div>
+            <div class="col-7 col-sm-8">
+              {{ user.date_joined }}
+            </div>
+          </div>
+          <div class="row mb-1 btn-container">
+            <div class="col-12">
+              <button class="btn btn-sm btn-success m-1">
+                <a href="#"><i class="fas fa-pen"></i>
+                  Update Profile</a>
+              </button>
+
+              <button class="btn btn-sm btn-danger m-1">
+                <a href="#"><i class="fas fa-pen"></i>
+                  Change Password</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

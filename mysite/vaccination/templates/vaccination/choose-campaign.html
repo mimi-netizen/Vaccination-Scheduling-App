@@ -1,0 +1,38 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Choose Campaign</title>
+{% endblock title %}
+
+{% block content %}
+<div class="mt-3">
+  <div class="d-flex align-items-center justify-content-between">
+    <h3 class="text-center">Choose Your Desired Campaign</h3>
+  </div>
+  <table class="table table-responsive table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Center</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Confirm</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      {% for campaign in page_obj %}
+      <tr>
+        <td>{{ campaign.center.name }}</td>
+        <td>{{ campaign.start_date }}</td>
+        <td>{{ campaign.end_date }}</td>
+        <td><a href="{% url 'vaccination:choose-slot' campaign.id %}" class="btn-sm btn-outline-primary">Select</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+  {% include "components/pagination.html" %}
+
+</div>
+{% endblock content %}

@@ -1,0 +1,115 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Vaccination List</title>
+{% endblock title %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title mb-4"><i class="fas fa-syringe"></i> Vaccination Details </h5>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Patient Name
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.patient.get_full_name }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Center Name
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.campaign.center.name }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Vaccine Name
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.campaign.vaccine.name }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Slot Date
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.slot.date }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Slot Time
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.slot.start_time }} to {{ object.slot.end_time }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Status
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {% if object.is_vaccinated %}
+          Vaccinated
+        {% else %}
+          Scheduled
+        {% endif %}
+      </div>
+    </div>
+
+    {% if object.is_vaccinated %}
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Date of Vaccination
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.date }}
+      </div>
+    </div>
+    {% endif %}
+    
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Last Modified On
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.updated_on }}
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-5 col-sm-4 col-md-3 col-lg-2 fw-bold">
+        Last Updated By
+      </div>
+      <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+        {{ object.updated_by }}
+      </div>
+    </div>
+
+    <div class="row mb-1 btn-container">
+      <div class="col-12">
+        <button class="btn btn-sm btn-primary m-1">
+          <a href="{% url 'vaccination:appointment-letter' object.id %}"><i class="fas fa-download"></i> Appointment Letter</a>
+        </button>
+
+        {% if object.is_vaccinated %}
+        <button class="btn btn-sm btn-success m-1">
+            <a href="{% url 'vaccination:vaccination-certificate' object.id %}"><i class="fas fa-download"></i> Vaccine Certificate</a>
+        </button>
+        {% endif %}
+      </div>
+    </div>
+    
+  </div>
+</div>
+{% endblock content %}

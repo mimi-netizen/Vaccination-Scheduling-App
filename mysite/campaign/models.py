@@ -26,3 +26,20 @@ class Slot(models.Model):
 
     def __str__(self):
         return str(self.date) + " | " + str(self.start_time) + " to " + str(self.end_time)
+
+    def reserve_vaccine(campaign_id, slot_id):
+        from center.models import Storage
+        from django.db.models import F
+        
+        slot = Slot.objects.get(id=slot_id)
+        campaign = Campaign.objects.get(id=campaign_id)
+        storage = Storage.objects.get(center=campaign.center, vaccine = campaign.vaccine)
+        
+        if (storage.total_quantity > 0) and (storage.booked_quantity <= storage.total_quantity) and (slot.reserved <= slot.max_capacity):
+            slot.reserved = F("reserved") + 1
+            storage.booked_quantity = F("booked_quantity") + 1
+            slot.save()
+            storage.save()
+            return True
+        return False
+

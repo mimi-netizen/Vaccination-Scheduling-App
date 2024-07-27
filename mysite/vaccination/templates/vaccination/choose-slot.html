@@ -1,0 +1,40 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %} 
+    <title>Choose Slot</title>
+{% endblock title %}
+
+{% block content %}
+<div class="mt-3">
+  <div class="d-flex align-items-center justify-content-between">
+    <h3 class="text-center">Choose Your Desired Slot</h3>
+  </div>
+  <table class="table table-responsive table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Start Time'</th>
+        <th scope="col">End Time</th>
+        <th scope="col">Max Capacity</th>
+        <th scope="col">Reserved</th>
+        <th scope="col">Confirm</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for slot in page_obj %}
+      <tr>
+        <td>{{ slot.date }}</td>
+        <td>{{ slot.start_time }}</td>
+        <td>{{ slot.end_time }}</td>
+        <td>{{ slot.max_capacity }}</td>
+        <td>{{ slot.reserved }}</td>
+        <td><a href="{% url 'vaccination:confirm-vaccination' slot.campaign.id slot.id %}" class="btn-sm btn-outline-primary">Choose</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% include "components/pagination.html" %}
+
+</div>
+{% endblock content %}

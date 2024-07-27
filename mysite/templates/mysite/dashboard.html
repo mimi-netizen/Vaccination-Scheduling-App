@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-column text-center m-1">
                             <span>
-                                <a href="" class="dashboard-card-link">
+                                <a href="{% url 'campaign:campaign-list' %}" class="dashboard-card-link">
                                     <i class="fas fa-calendar fs-1"></i> <br>
                                     Current <br> Campaigns
                                 </a>
@@ -55,7 +55,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-column text-center m-1">
                             <span>
-                                <a href="#" class="dashboard-card-link">
+                                <a href="{% url 'vaccination:vaccination-list' %}" class="dashboard-card-link">
                                     <i class="fas fa-book-medical fs-1"></i> <br>
                                     My <br> Vaccination
                                 </a>
@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-column text-center m-1">
                             <span>
-                                <a href="#" class="dashboard-card-link">
+                                <a href="{% url 'vaccination:choose-vaccine' %}" class="dashboard-card-link">
                                     <i class="fas fa-clock fs-1"></i> <br>
                                     Schedule <br> Vaccination
                                 </a>

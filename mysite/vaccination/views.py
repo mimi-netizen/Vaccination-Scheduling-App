@@ -8,11 +8,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.utils import timezone
 from vaccination.forms import VaccinationForm
 from django.views import View
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from vaccination.models import Vaccination
 from vaccination.utils import generate_pdf
 from django.contrib.auth.decorators import login_required
-
+from django.core.exceptions import PermissionDenied
+from django.urls import reverse
 
 class ChooseVaccine(LoginRequiredMixin, generic.ListView):
     model = Vaccine
@@ -110,3 +111,22 @@ def vaccination_certificate(request, vaccination_id):
         }
         return generate_pdf(context)
     return HttpResponseBadRequest("User not vaccinated")
+
+
+def approve_vaccination(request, vaccination_id):
+    if request.user.has_perm("vaccination.change_vaccination"):
+        try:
+            vaccination = Vaccination.objects.get(id=vaccination_id)
+        except Vaccination.DoesNotExist:
+            return HttpResponseBadRequest("Vaccination with the given object id does not exists")
+        
+        if request.user in vaccination.campaign.agents.all():
+            if vaccination.is_vaccinated:
+                return HttpResponse("Patient is already Vaccinated")
+            vaccination.is_vaccinated = True
+            vaccination.date = timezone.now()
+            vaccination.updated_by = request.user
+            vaccination.save()
+            return HttpResponseRedirect(reverse("vaccination:vaccination-detail", kwargs={"pk": vaccination_id}))
+        raise PermissionDenied()
+    raise PermissionDenied()

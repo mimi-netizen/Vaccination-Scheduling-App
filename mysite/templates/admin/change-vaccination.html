@@ -1,0 +1,16 @@
+{% extends 'admin/change_form.html' %}
+
+{% block submit_buttons_bottom %} 
+    
+    {% if original %}
+    <div class="submit-row">
+        {% if not original.is_vaccinated %}
+            <a href="{% url 'vaccination:approve-vaccination' original.id  %}" style="margin-right: 20px;" target="_blank">Approve Vaccination</a>
+        {% endif %}
+            <a href="{% url 'vaccination:appointment-letter' original.id %}" style="margin-right: 20px;" target="_blank">Appointment Letter</a>
+            <a href="{% url 'vaccination:vaccination-certificate' original.id %}" style="margin-right: 20px;" target="_blank">Vaccination Certificate</a>
+    </div>
+    {% endif %}
+    
+    {{ block.super }}
+{% endblock %}

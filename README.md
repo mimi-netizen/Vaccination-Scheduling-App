@@ -26,7 +26,7 @@ The Vaccination Scheduling App is a web application that helps parents and careg
 
 ## Installation
 
-To run the Vaccination Scheduling App locally, follow these steps after installing `Django`:
+To run the Vaccination Scheduling App locally, follow these steps:
 
 1. Clone the repository:
    ```bash

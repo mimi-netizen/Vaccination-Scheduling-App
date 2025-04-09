@@ -6,9 +6,14 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block title %}
+  <meta name="description" content="Book your vaccinations easily with our online scheduling system">
+  <meta name="keywords" content="vaccine, vaccination, scheduling, health, medical">
+  <meta property="og:title" content="Book My Vaccine">
+  <meta property="og:description" content="Easy online vaccination scheduling">
+  <meta property="og:type" content="website">
+  {% block title %}
 
-    {% endblock title %}
+  {% endblock title %}
 
   <!--    Favicon     -->
   <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}" />
@@ -27,51 +32,85 @@
 
 <body>
 
+  <!-- Loading Spinner -->
+  <div id="loading-spinner" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
 
-<header class="header_wrapper">
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <img src="{% static 'images/logo.png' %}" height="50">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-stream navbar-toggler-icon"></i>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav menu-navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/"><i class="fas fa-home"></i>
-              Home </a>
-          </li>
+  <header class="header_wrapper">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="{% static 'images/logo.png' %}" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-stream navbar-toggler-icon"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <form class="d-flex mx-3" action="/search/" method="GET">
+            <div class="input-group">
+              <input class="form-control" type="search" name="q" placeholder="Search vaccines, centers..." aria-label="Search">
+              <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </form>
+          <ul class="navbar-nav menu-navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/"><i class="fas fa-home"></i>
+                Home </a>
+            </li>
 
 
 
-          <li class="nav-item">
-            <a class="nav-link" href="/accounts/login/"><i class="fas fa-sign-in-alt"></i> Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/accounts/signup/"><i class="fas fa-plus"></i> Signup</a>
-          </li>
-        </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/login/"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/signup/"><i class="fas fa-plus"></i> Signup</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-</header> 
+    </nav>
+  </header>
 
-{% include "components/message.html" %}
+  {% include "components/message.html" %}
 
-<div class="container main-content mt-2 p-2">
+  <div class="container main-content mt-2 p-2">
     {% block content %}
 
     {% endblock content %}
-</div>
-<footer class="text-center">
+  </div>
+  <footer class="text-center">
     Copyright &#169 The Kydd Foundation
   </footer>
 
+  <!-- Scroll To Top -->
+  <button id="scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <!--    Bootstrap 5 JS CDN Link -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+  </script>
+  <script>
+    // Loading spinner
+    window.addEventListener('load', () => {
+      document.getElementById('loading-spinner').style.display = 'none';
+    });
+
+    // Scroll to top
+    const scrollBtn = document.getElementById('scroll-top');
+    window.onscroll = () => {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollBtn.style.display = 'block';
+      } else {
+        scrollBtn.style.display = 'none';
+      }
+    };
+    scrollBtn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
   </script>
 </body>
 

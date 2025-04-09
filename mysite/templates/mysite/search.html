@@ -1,0 +1,80 @@
+{% extends 'mysite/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Search Results - Book My Vaccine</title>
+{% endblock title %}
+
+{% block content %}
+<div class="search-wrapper">
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <!-- Filters -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Filters</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Type</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="vaccine">
+                                <label class="form-check-label">Vaccines</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="center">
+                                <label class="form-check-label">Centers</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Distance</label>
+                            <input type="range" class="form-range" min="1" max="50" value="10">
+                            <div class="text-muted"><span id="distance">10</span> km</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- Map View -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div id="map" style="height: 300px;"></div>
+                </div>
+            </div>
+            <!-- Search Results -->
+            <div class="search-results">
+                <!-- Result Cards will be populated here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Google Maps JavaScript -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+<script>
+    // Initialize map
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8,
+        });
+
+        // Get user location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    map.setCenter(pos);
+                }
+            );
+        }
+    }
+
+    // Initialize when page loads
+    window.addEventListener('load', initMap);
+</script>
+{% endblock content %}

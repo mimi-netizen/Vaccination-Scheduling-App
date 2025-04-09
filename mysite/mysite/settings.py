@@ -28,7 +28,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", False)
+DEBUG = env.bool("DEBUG", True)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "center.apps.CenterConfig",
     "campaign.apps.CampaignConfig",
     "vaccination.apps.VaccinationConfig",
+    "search.apps.SearchConfig",
+    'django.contrib.gis',  # Add GeoDjango
 ]
 
 MIDDLEWARE = [
@@ -89,7 +91,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
